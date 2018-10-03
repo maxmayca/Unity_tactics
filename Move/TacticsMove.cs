@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TacticsMove : MonoBehaviour
 {
-    public bool turn = false;
+    /*public bool turn = false;
 
     List<Tile> selectableTiles = new List<Tile>();
     GameObject[] tiles;
@@ -36,7 +36,7 @@ public class TacticsMove : MonoBehaviour
 
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
-        TurnManager.AddUnit(this);
+        //TurnManager.AddUnit(this);
     }
 
     public void  GetCurrentTile()
@@ -403,6 +403,6 @@ public class TacticsMove : MonoBehaviour
     public void EndTurn()
     {
         turn = false;
-    }
+    }*/
 
 }

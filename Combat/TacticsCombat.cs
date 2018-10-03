@@ -5,10 +5,11 @@ using UnityEngine;
 public class TacticsCombat : MonoBehaviour
 {
 
-    //public bool turn = false;
+    /*public bool turn = false;
 
     List<Tile> attackableTiles = new List<Tile>();
     List<Tile> targetableTiles = new List<Tile>();
+    
    
     GameObject[] tiles;
     
@@ -16,7 +17,7 @@ public class TacticsCombat : MonoBehaviour
 
     Stack<Tile> path = new Stack<Tile>();
     Tile currentTile;
-    test Target;
+    TacticsCombat Target;
 
 
     public bool attacking = false;
@@ -51,7 +52,7 @@ public class TacticsCombat : MonoBehaviour
 
     // public Tile actualTargetTile;
 
-    protected void Init()
+   /* protected void Init()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
 
@@ -64,7 +65,7 @@ public class TacticsCombat : MonoBehaviour
 
 
 
-        //TurnManager.AddUnit(this);
+        TurnManager.AddUnit(this);
 
     }
 
@@ -86,18 +87,18 @@ public class TacticsCombat : MonoBehaviour
         return tile;
     }
 
-    public test FindTargetUnit(Tile tile)
+    public TacticsCombat FindTargetUnit(Tile tile)
     {
         /*Vector3 halfExtents = new Vector3(0.25f, (1 + jumpHeight) / 2.0f, 0.25f);
         Vector3 t = tile.transform.position;
         Collider[] targetcollider = Physics.OverlapBox(t+Vector3.up, halfExtents);*/
 
-        RaycastHit hit;
-        test TargetUnit = null;
+      /*  RaycastHit hit;
+        TacticsCombat TargetUnit = null;
 
         if (Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1))
         {
-            TargetUnit = hit.collider.GetComponent<test>();
+            TargetUnit = hit.collider.GetComponent<TacticsCombat>();
         }
         return TargetUnit;
 
@@ -214,6 +215,7 @@ public class TacticsCombat : MonoBehaviour
         
         else
         {
+            
             RemoveTargetableTiles();
             RemoveAttackableTiles();
             attacking = false;
@@ -229,17 +231,14 @@ public class TacticsCombat : MonoBehaviour
                 //DestroyGameObject();
                 Target.HP = 0;
             }
-           
 
+            TurnManager.EndTurn();
             
             Debug.Log(Target.HP);
         }
     }
 
-  /*  void DestroyGameObject()
-    {
-       
-    }*/
+ 
 
     void MoveToEdge(Tile targetTile)
     {
@@ -391,29 +390,29 @@ public class TacticsCombat : MonoBehaviour
          }
      }*/
 
-   /* void AttackBackward()
-    {
-        Tile t = path.Peek();
-        Vector3 target = t.transform.position;
+    /* void AttackBackward()
+     {
+         Tile t = path.Peek();
+         Vector3 target = t.transform.position;
 
-        if (Vector3.Distance(transform.position, target) <= 1f)
-        {
-             CalculateHeading(target);
-                SetHorizontalVelocity();
-                velocity /= 3.0f;
+         if (Vector3.Distance(transform.position, target) <= 1f)
+         {
+              CalculateHeading(target);
+                 SetHorizontalVelocity();
+                 velocity /= 3.0f;
 
-                transform.forward = heading;
-                transform.position -= velocity * Time.deltaTime;
-        }
-        else
-        {
-            center = false;
-            edge= false;
+                 transform.forward = heading;
+                 transform.position -= velocity * Time.deltaTime;
+         }
+         else
+         {
+             center = false;
+             edge= false;
 
-            velocity /= 3.0f;
-            velocity.y = 1.5f;
-        }
-    }*/
+             velocity /= 3.0f;
+             velocity.y = 1.5f;
+         }
+     }*/
 
 
     /*void Jump(Vector3 target)
@@ -617,9 +616,9 @@ public class TacticsCombat : MonoBehaviour
 
 
 
-    }
+    }*/
 
-    public void BeginTurn()
+   /* public void BeginTurn()
     {
         turn = true;
     }

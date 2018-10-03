@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : TacticsCombat
 {
+    /*
 
     // Use this for initialization
     void Start()
@@ -15,13 +16,15 @@ public class PlayerCombat : TacticsCombat
     // Update is called once per frame
     void Update()
     {
-        /* Debug.DrawRay(transform.position, transform.forward);
+         Debug.DrawRay(transform.position, transform.forward);
 
-         if (!turn)
-         {
-             return;
-         } */
-        
+        if (!dead)
+        {
+            if (!turn)
+            {
+                return;
+            }
+
             if (!attacking)
             {
                 // FindTargetableTiles();
@@ -36,6 +39,12 @@ public class PlayerCombat : TacticsCombat
             {
                 Attack();
             }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+       
 
            
         
@@ -67,5 +76,5 @@ public class PlayerCombat : TacticsCombat
                 }
             }
         }
-    }
+    } */
 }

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public bool walkable = true;
+    public bool available = true;
     public bool current = false;
     public bool target = false;
-    public bool selectable = false;
+    public bool walkable = false;
+    public bool runnable = false;
     public bool attackable = false;
     public bool targetable = false;
+    public bool orientation = false;
+
+    
 
 
     public List<Tile> adjacencyList = new List<Tile>();
@@ -38,14 +42,18 @@ public class Tile : MonoBehaviour
     {
         if (current)
         {
-            GetComponent<Renderer>().material.color = Color.magenta;
+            GetComponent<Renderer>().material.color = Color.grey;
+        }
+        else if (orientation)
+        {
+            GetComponent<Renderer>().material.color = Color.green;
         }
         else if (target)
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            GetComponent<Renderer>().material.color = Color.black;
 
         }
-        else if(targetable)
+        else if (targetable)
         {
             GetComponent<Renderer>().material.color = Color.red;
         }
@@ -53,10 +61,14 @@ public class Tile : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (selectable)
+        else if (walkable)
+        {
+            GetComponent<Renderer>().material.color = Color.cyan;
+
+        }
+        else if (runnable)
         {
             GetComponent<Renderer>().material.color = Color.blue;
-
         }
         else
         {
@@ -70,11 +82,15 @@ public class Tile : MonoBehaviour
         adjacencyList.Clear();
         adjacencyList2.Clear();
         adjacencyListEnnemies.Clear();
+        
 
         current = false;
         target = false;
-        selectable = false;
+        walkable = false;
+        runnable = false;
         attackable = false;
+        targetable = false;
+        orientation = false;
     
 
 
@@ -84,16 +100,17 @@ public class Tile : MonoBehaviour
 
         f = g = h = 0;
     }
-    /*public void Reset2()
+    public void PartialReset()
     {
         adjacencyList.Clear();
+        adjacencyList2.Clear();
         adjacencyListEnnemies.Clear();
 
         current = false;
         target = false;
-        selectable = false;
         
-        targetable = false;
+        
+       
 
 
         visited = false;
@@ -101,7 +118,7 @@ public class Tile : MonoBehaviour
         distance = 0;
 
         f = g = h = 0;
-    }*/
+    }
     public void FindNeighbors(float jumpHeight, Tile target)
     {
         Reset();
@@ -113,8 +130,19 @@ public class Tile : MonoBehaviour
         CheckTile(-Vector3.right, jumpHeight,target);
     }
 
+    public void FindNeighbors2(float jumpHeight, Tile target)
+    {
+        PartialReset();
 
-      public void FindNeighborsEnnemies(float jumpHeight, Tile target)
+
+        CheckTile(Vector3.forward, jumpHeight, target);
+        CheckTile(-Vector3.forward, jumpHeight, target);
+        CheckTile(Vector3.right, jumpHeight, target);
+        CheckTile(-Vector3.right, jumpHeight, target);
+    }
+
+
+    public void FindNeighborsEnnemies(float jumpHeight, Tile target)
  {
      Reset();
 
@@ -133,7 +161,7 @@ public class Tile : MonoBehaviour
         {
             
             Tile tile = item.GetComponent<Tile>();
-            if (tile != null && tile.walkable)
+            if (tile != null && tile.available)
             {
                 RaycastHit hit;
 
@@ -163,7 +191,7 @@ public class Tile : MonoBehaviour
         {
 
             Tile tile = item.GetComponent<Tile>();
-            if (tile != null && tile.walkable)
+            if (tile != null && tile.available)
             {
                 RaycastHit hit;
 

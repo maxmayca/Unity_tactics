@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCMove : TacticsMove
 {
-    GameObject target;
+   /* GameObject target;
 
 	// Use this for initialization
 	void Start ()
@@ -62,5 +62,5 @@ public class NPCMove : TacticsMove
         }
 
         target = nearest;
-    }
+    }*/
 }
